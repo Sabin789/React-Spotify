@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import { useSelector,useDispatch } from "react-redux";
-import { Star, StarFill } from 'react-bootstrap-icons'
+import { Heart, HeartFill } from 'react-bootstrap-icons'
 import { addToFavouritesAction, removeFromFavouritesAction,setSong  } from "../redux/actions";
 const GoodMorning = () => {
   
@@ -9,14 +9,17 @@ const GoodMorning = () => {
     const favourites = useSelector((state)=>state.favourites.list)
     let morning=songs.slice(5,11)
     // const isFav=true
- 
+    
+
     return (
        <>
        
-         {morning.map((m)=>{
+         {morning.map((m,i)=>{
 
-                          const isFav =favourites.includes(m)
-                      
+                        //  console.log(favourites.includes(m))
+                        //  console.log(favourites)
+                     
+                         
             return (
                 
      
@@ -31,9 +34,9 @@ const GoodMorning = () => {
 
         <div className="media-body">
     <h5 className="mt-3 mb-3 ml-1">{m.title}</h5>
-    { isFav ? 
-              <StarFill
-                color="gold"
+    { favourites.filter(s=>s.id===m.id).length>0 ? 
+              <HeartFill
+                color="green"
                 size={16}
                 className="mr-2 my-auto"
                 
@@ -43,8 +46,8 @@ const GoodMorning = () => {
                 }
               />
             : 
-              <Star
-                color="gold"
+              <Heart
+                color="green"
                 size={16}
                 className="mr-2 my-auto"
                 onClick={() =>

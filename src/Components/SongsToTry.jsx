@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap";
 import { useSelector,useDispatch } from "react-redux";
-import { Star, StarFill } from 'react-bootstrap-icons'
+import { Heart, HeartFill } from 'react-bootstrap-icons'
 import { addToFavouritesAction, removeFromFavouritesAction, setSong  } from "../redux/actions";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -20,7 +20,7 @@ const SongsToTry = () => {
         return (
            <>
              {recent.map((m)=>{
-                const isFav = favourites.includes(m)
+
                 return(
               
                 <Col sm={12} md={3} className="col mb-5" key={m.id}>
@@ -37,9 +37,9 @@ const SongsToTry = () => {
 
       
               <span className="card-text text-white" >{m.artist.name}</span>
-              {isFav ? (
-          <StarFill className="mb-5"
-            color="gold"
+              {favourites.filter(s=>s.id===m.id).length>0  ? (
+          <HeartFill className="mb-5"
+            color="green"
             size={16}
           
             
@@ -49,9 +49,9 @@ const SongsToTry = () => {
             }
           />
         ) : (
-          <Star
+          <Heart
           className="mb-5"
-            color="gold"
+            color="green"
             size={16}
      
             onClick={() =>
