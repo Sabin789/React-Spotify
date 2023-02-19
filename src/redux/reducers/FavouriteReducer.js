@@ -23,7 +23,7 @@ const FavouriteReducer = (state = initialState, action) => {
       return {
         ...state,
       
-          list: state.list.filter((fav) => fav !== action.payload),
+          list: state.list.filter((fav) => fav.id !== action.payload.id),
     
       }
     //   case START:

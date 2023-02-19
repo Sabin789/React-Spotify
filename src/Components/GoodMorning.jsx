@@ -14,11 +14,12 @@ const GoodMorning = () => {
     return (
        <>
        
-         {morning.map((m,i)=>{
+         {morning.map((m)=>{
 
                         //  console.log(favourites.includes(m))
                         //  console.log(favourites)
-                     
+                 const    isFav=favourites.filter(s=>s.id===m.id).length>0
+                 console.log(isFav)
                          
             return (
                 
@@ -34,7 +35,8 @@ const GoodMorning = () => {
 
         <div className="media-body">
     <h5 className="mt-3 mb-3 ml-1">{m.title}</h5>
-    { favourites.filter(s=>s.id===m.id).length>0 ? 
+    { isFav ? 
+        
               <HeartFill
                 color="green"
                 size={16}
@@ -44,6 +46,7 @@ const GoodMorning = () => {
                   dispatch(removeFromFavouritesAction(m))
        
                 }
+                {...isFav===false}
               />
             : 
               <Heart
