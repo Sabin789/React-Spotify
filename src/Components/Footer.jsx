@@ -11,6 +11,9 @@ import e from "./assets/arrow-counterclockwise.svg"
 import f from "./assets/playlist.png"
 import g from "./assets/pc-display.svg"
 import h from "./assets/volume-up.svg"
+import { Heart, HeartFill } from 'react-bootstrap-icons'
+import { addToFavouritesAction, removeFromFavouritesAction, setSong  } from "../redux/actions";
+
 const Footer = () => {
   const dispatch=useDispatch()
   let que=useSelector((state)=>state.Que.results)
@@ -21,6 +24,7 @@ const Footer = () => {
 const current =useSelector((state)=>state.Que.current)
 
   //  setCurrent(useSelector((state)=> state.Que.results[0]))
+  const favourites = useSelector((state)=>state.favourites.list)
 
 
  return(
@@ -34,8 +38,29 @@ const current =useSelector((state)=>state.Que.current)
         <p className="text-white">{current.title}</p>
         <p className="current-artist-text play-list-text" >{current.artist.name}</p>
     </div>
-    <img src={heart} className="play-bar-icons heart-down"/>
-</Col>
+    { favourites.filter(s=>s.id===current.id).length>0   ? 
+        
+        <HeartFill
+          color="green"
+          size={16}
+          className="mr-2 my-auto"
+          
+          onClick={() =>
+            dispatch(removeFromFavouritesAction(current))
+ 
+          }
+     
+        />
+      : 
+        <Heart
+          color="green"
+          size={16}
+          className="mr-2 my-auto"
+          onClick={() =>
+            dispatch(addToFavouritesAction(current))
+          }
+        />
+      }</Col>
 <div className="col-5 middle-of-play-bar">
     <div className="song-icons d-flex justify-content-center">
         <img src={a} className="play-bar-icons play-bar-icons-big" id="shuffle-icon" alt="alt" />

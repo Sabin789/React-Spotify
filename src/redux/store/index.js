@@ -6,11 +6,11 @@ import {
 } from 'redux-persist';
 import FavouriteReducer from '../reducers/FavouriteReducer';
 import HomeReducer from '../reducers/HomeReducer';
-
+import undoableFave from '../reducers/FavouriteReducer';
 import {encryptTransform} from "redux-persist-transform-encrypt"
 import QueOfSongs from '../reducers/QueOfSongs';
+import undoable from 'redux-undo'
 
-// const secretKey=process.env.REACT_APP_ENV_SECRET_KEY
 
 const persistConfig ={
     key:"root",

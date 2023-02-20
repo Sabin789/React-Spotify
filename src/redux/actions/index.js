@@ -31,8 +31,7 @@ export const fetchHomepage= (query,dispatch)=>{
       if(response.ok){
       let  res=await response.json()
        const {data}=res
-       console.log(res)
-       console.log(data)
+    
        dispatch({
         type:GET_HOMEPAGE,
         payload:data

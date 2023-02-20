@@ -8,7 +8,7 @@ const GoodMorning = () => {
     let songs =useSelector((state)=>state.home.results)
     const favourites = useSelector((state)=>state.favourites.list)
     let morning=songs.slice(5,11)
-    // const isFav=true
+
     
 
     return (
@@ -16,10 +16,8 @@ const GoodMorning = () => {
        
          {morning.map((m)=>{
 
-                        //  console.log(favourites.includes(m))
-                        //  console.log(favourites)
                  const    isFav=favourites.filter(s=>s.id===m.id).length>0
-                 console.log(isFav)
+
                          
             return (
                 
@@ -46,7 +44,7 @@ const GoodMorning = () => {
                   dispatch(removeFromFavouritesAction(m))
        
                 }
-                {...isFav===false}
+  
               />
             : 
               <Heart

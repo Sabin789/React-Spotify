@@ -1,6 +1,6 @@
 
 import { ADD_TO_FAVOURITE,REMOVE_FROM_FAVOURITE,START} from "../actions"
-
+import undoable from 'redux-undo'
 
 const initialState = {
   
@@ -26,14 +26,11 @@ const FavouriteReducer = (state = initialState, action) => {
           list: state.list.filter((fav) => fav.id !== action.payload.id),
     
       }
-    //   case START:
-    //     return{
-    //       ...state,
-    //  list:action.payload
-    //     }
+  
     default:
       return state
   }
 }
-
+const undoableFave = undoable(FavouriteReducer)
 export default FavouriteReducer
+// export default undoableFave
